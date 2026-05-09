@@ -1,15 +1,22 @@
-﻿#include <iostream>
-#include "Order.h"
+﻿#include "OrdersSystem.h"
+#include <iostream>
 using namespace std;
 
 int main() {
-    Order o1("2026-05-08", "12:30", 20, "Pizza + Cola", 250.0);
-    Order o2("2026-05-08", "12:45", 15, "Burger", 120.0);
+    OrdersSystem system;
 
-    o1.print();
-    o2.print();
+    system.addOrder(Order("2026-05-09", "10:30", 20, "Pizza", 12.5));
+    system.addOrder(Order("2026-05-09", "10:10", 15, "Burger", 8.0));
+    system.addOrder(Order("2026-05-09", "10:20", 10, "Coffee", 3.5));
 
-    cout << "Total orders: " << Order::getTotalOrders() << endl;
+    cout << "All orders:\n";
+    system.displayAll();
+
+    cout << "\nSorted & processing:\n";
+    system.processNextOrder();
+
+    cout << "\nRemaining orders:\n";
+    system.displayAll();
 
     return 0;
 }
