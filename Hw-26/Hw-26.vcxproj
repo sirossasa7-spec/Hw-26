@@ -129,9 +129,11 @@
   <ItemGroup>
     <ClCompile Include="Hw-26.cpp" />
     <ClCompile Include="Order.cpp" />
+    <ClCompile Include="OrdersSystem.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Order.h" />
+    <ClInclude Include="OrdersSystem.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
