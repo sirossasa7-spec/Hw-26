@@ -1,32 +1,30 @@
 #pragma once
 
 #include <string>
-using namespace std;
 
 class Order {
 private:
+    static int totalOrders;   
 
-    static int orderCounter;
-
-    string orderDate;
-    string orderTime;
-    int preparationTime;
-    string description;
+    std::string date;
+    std::string time;
+    int duration;             
+    std::string description;
     double price;
     int orderNumber;
 
 public:
-    Order(string date, string time, int prepTime, string desc, double pr);
+    Order(std::string date, std::string time, int duration, std::string description, double price);
 
-    string getDate() const;
-    string getTime() const;
-    int getPreparationTime() const;
-    string getDescription() const;
+    std::string getDate() const;
+    std::string getTime() const;
+    int getDuration() const;
+    std::string getDescription() const;
     double getPrice() const;
     int getOrderNumber() const;
 
-    static int getTotalOrders();
+    int getReadyTimeInMinutes() const; 
 
-    void print() const;
+    void display() const;
 };
 

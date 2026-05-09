@@ -1,52 +1,40 @@
 #include "Order.h"
 #include <iostream>
+#include <sstream>
 
-int Order::orderCounter = 0;
+int Order::totalOrders = 0;
 
-Order::Order(string date, string time, int prepTime, string desc, double pr) {
-    orderDate = date;
-    orderTime = time;
-    preparationTime = prepTime;
-    description = desc;
-    price = pr;
-
-    orderCounter++;
-    orderNumber = orderCounter;
+Order::Order(std::string date, std::string time, int duration,
+    std::string description, double price)
+    : date(date), time(time), duration(duration),
+    description(description), price(price)
+{
+    orderNumber = ++totalOrders;
 }
 
-string Order::getDate() const {
-    return orderDate;
+std::string Order::getDate() const { return date; }
+std::string Order::getTime() const { return time; }
+int Order::getDuration() const { return duration; }
+std::string Order::getDescription() const { return description; }
+double Order::getPrice() const { return price; }
+int Order::getOrderNumber() const { return orderNumber; }
+
+int Order::getReadyTimeInMinutes() const {
+    int hours, minutes;
+    char colon;
+
+    std::stringstream ss(time);
+    ss >> hours >> colon >> minutes;
+
+    return hours * 60 + minutes + duration;
 }
 
-string Order::getTime() const {
-    return orderTime;
-}
-
-int Order::getPreparationTime() const {
-    return preparationTime;
-}
-
-string Order::getDescription() const {
-    return description;
-}
-
-double Order::getPrice() const {
-    return price;
-}
-
-int Order::getOrderNumber() const {
-    return orderNumber;
-}
-
-int Order::getTotalOrders() {
-    return orderCounter;
-}
-
-void Order::print() const {
-    cout << "Order #" << orderNumber << endl;
-    cout << "Date: " << orderDate << endl;
-    cout << "Time: " << orderTime << endl;
-    cout << "Preparation Time: " << preparationTime << " min" << endl;
-    cout << "Description: " << description << endl;
-    cout << "Price: " << price << " грн" << endl << endl;
+void Order::display() const {
+    std::cout << "Order #" << orderNumber << "\n"
+        << "Date: " << date << "\n"
+        << "Time: " << time << "\n"
+        << "Duration: " << duration << " min\n"
+        << "Description: " << description << "\n"
+        << "Price: $" << price << "\n"
+        << "------------------------\n";
 }
